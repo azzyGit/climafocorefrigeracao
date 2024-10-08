@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foco e Clima - Excelência em Refrigeração</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0039d6; /* Azul acinzentado suave */
+            --secondary-color: #4282f8; /* Azul claro */
+            --accent-color: #010a5c; /* Azul escuro */
+            --text-color: #000;
+            --bg-color: #f0f5f9; /* Fundo cinza claro */
+            --white: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            margin-right: 10px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .services, .about, .testimonials, .contact {
+            padding: 5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-item {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .service-item:hover .service-icon {
+            transform: scale(1.1);
+        }
+        .service-item h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        .service-item p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .service-details {
+            display: none;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        .service-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .service-details li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .service-details li i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+        
+        .about {
+            background-color: var(--white);
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .testimonials {
+            background-color: var(--bg-color);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-item {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid var(--accent-color);
+        }
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .contact {
+            background-color: var(--white);
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-group textarea {
+            height: 150px;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .social-links {
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .about-image {
+                order: -1;
+            }
+            .service-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .contact {
+            background-color: var(--white);
+            text-align: center;
+            padding: 4rem 0;
+        }
+        .contact h2 {
+            color: var(--primary-color);
+        }
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #27b85f;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-button i {
+            margin-right: 8px;
+        }
+        .whatsapp-button:hover {
+            background-color: #1900a7;
+        }
+        /* Ajustes para mobile */
+        @media (max-width: 768px) {
+            .whatsapp-button {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        .scroll-down {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .scroll-down:hover {
+            transform: translateY(10px);
+        }
+        .scroll-down p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .scroll-down i {
+            font-size: 1.8rem;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(6px);
+            }
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+            .scroll-down p {
+                font-size: 0.9rem;
+            }
+        }
+
+        #location {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .location-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .location-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .location-info p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .location-details {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .location-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .location-details ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .location-details li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Estilos atualizados para os flocos de neve */
+        .snowflake {
+            color: #fff;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px #000;
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation-name: snowflakes-fall, snowflakes-shake;
+            animation-duration: 10s, 3s;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+            animation-play-state: running, running;
+        }
+        .snowflake::after {
+            content: '❄';
+            position: absolute;
+            color: white;
+            top: 0;
+            left: 0;
+            text-shadow: 
+                0 0 4px #05aefe,
+                0 0 8px #05aefe,
+                0 0 12px #05aefe,
+                0 0 16px #05aefe;
+        }
+        @keyframes snowflakes-fall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+        @keyframes snowflakes-shake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(80px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo"><i class="fas fa-snowflake"></i>Foco e Clima</a>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#testimonials">Depoimentos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Conforto Térmico de Excelência</h1>
+            <p>Soluções em refrigeração para sua casa ou empresa</p>
+            <a href="#contact" class="btn">Solicite um Orçamento</a>
+            <div class="scroll-down">
+                <p>Role para baixo</p>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <i class="fas fa-snowflake service-icon"></i>
+                    <h3>Instalação</h3>
+                    <p>Instalação profissional de sistemas de ar condicionado para residências e empresas.</p>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li><i class="fas fa-check"></i>Avaliação do local e necessidades</li>
+                            <li><i class="fas fa-check"></i>Dimensionamento correto do equipamento</li>
+                            <li><i class="fas fa-check"></i>Instalação eficiente e limpa</li>
+                            <li><i class="fas fa-check"></i>Teste e configuração do sistema</li>
+                            <li><i class="fas fa-check"></i>Orientação sobre uso e manutenção</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-tools service-icon"></i>
+                    <h3>Manutenção</h3>
+                    <p>Manutenção preventiva e corretiva para manter seu sistema funcionando perfeitamente.</p>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li><i class="fas fa-check"></i>Limpeza de filtros e componentes</li>
+                            <li><i class="fas fa-check"></i>Verificação de pressão e vazamentos</li>
+                            <li><i class="fas fa-check"></i>Lubrificação de partes móveis</li>
+                            <li><i class="fas fa-check"></i>Diagnóstico e reparo de problemas</li>
+                            <li><i class="fas fa-check"></i>Recarga de gás refrigerante</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-drafting-compass service-icon"></i>
+                    <h3>Projeto</h3>
+                    <p>Projetos personalizados de climatização para atender às suas necessidades específicas.</p>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li><i class="fas fa-check"></i>Análise do espaço e requisitos</li>
+                            <li><i class="fas fa-check"></i>Cálculo de carga térmica</li>
+                            <li><i class="fas fa-check"></i>Seleção de equipamentos adequados</li>
+                            <li><i class="fas fa-check"></i>Elaboração de plantas e esquemas</li>
+                            <li><i class="fas fa-check"></i>Otimização de eficiência energética</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Nós</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A Foco e Clima é líder em soluções de climatização, com mais de 15 anos de experiência no mercado. Nossa equipe altamente qualificada está comprometida em fornecer o melhor em conforto térmico para nossos clientes.</p>
+                    <p>Trabalhamos com as melhores marcas e tecnologias do mercado, garantindo eficiência energética e durabilidade em todos os nossos projetos. Nosso compromisso com a excelência nos tornou referência no setor de refrigeração e climatização.</p>
+                    <p>Atendemos clientes residenciais e comerciais, sempre com foco na satisfação e no bem-estar de quem confia em nossos serviços.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Depoimentos</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-avatar">
+                        <img src="https://lh3.googleusercontent.com/a/ACg8ocIicHqbTSQ9lhtsTpYB0sQVJ3BoqI8zvD9RR2qmOtCCG-gHJg=w60-h60-p-rp-mo-br100" alt="Cliente 1">
+                    </div>
+                    <p class="testimonial-text">"Excelente serviço! A equipe da Foco e Clima foi muito profissional e eficiente na instalação do nosso sistema de ar condicionado."</p>
+                    <p class="testimonial-author">Renata Baros</p>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-avatar">
+                        <img src="https://lh5.googleusercontent.com/p/AF1QipP0uRnMlCMJfnPVmBDR03Y9pQNk-PxoRCLICCXh=w180-h180-p-k-no-rp-br100;" alt="Cliente 2">
+                    </div>
+                    <p class="testimonial-text">"Ótimo atendimento e rapidez na manutenção. Recomendo a todos que precisam de serviços de climatização."</p>
+                    <p class="testimonial-author">João Santos</p>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-avatar">
+                        <img src="https://lh3.googleusercontent.com/a-/ALV-UjWYNhSI-VN9w8S3OTfaRAQjBcQEBP1LcflvCpyEty5WXhZuZe7YSQ=w60-h60-p-rp-mo-br100" alt="Cliente 3">
+                    </div>
+                    <p class="testimonial-text">"O projeto de climatização para nossa empresa superou todas as expectativas. Ambiente muito mais agradável para trabalhar!"</p>
+                    <p class="testimonial-author">Ana Oliveira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Entre em Contato</h2>
+        <p>Estamos prontos para ajudar você com todas as suas necessidades de refrigeração e climatização. Converse com um de nossos especialistas agora mesmo e obtenha informações detalhadas sobre nossos serviços.</p>
+        <a href="https://wa.me/5541995006231" target="_blank" class="whatsapp-button">
+            <i class="fab fa-whatsapp"></i> Fale Conosco no WhatsApp
+        </a>
+        <p style="margin-top: 1rem;">Nosso atendimento é rápido e fácil, com suporte dedicado para oferecer a melhor solução para você.</p>
+    </section>
+
+    <section id="location">
+        <div class="location-container">
+            <div class="location-info">
+                <h2>Nossa Localização</h2>
+                <p>Estamos estrategicamente localizados para melhor atender nossos clientes. Venha conhecer nossa loja e descobrir as melhores soluções em climatização para seu ambiente.</p>
+                <div class="location-details">
+                    <h3>Foco e Clima</h3>
+                    <p>R. Juriti, 28 - Capela Velha, Araucária - PR, 83706-364</p>
+                    <ul>
+                        <li>✓ Fácil acesso</li>
+                        <li>✓ Aberto de segunda a sábado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Foco e Clima. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            let snowflakes = document.querySelectorAll('.snowflake');
+            snowflakes.forEach(function(flake, index) {
+                flake.style.left = Math.random() * 100 + '%';
+                flake.style.animationDelay = (Math.random() * 5) + 's';
+                flake.style.opacity = Math.random() * 0.5 + 0.5;
+                flake.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            });
+        });
+        
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        
+        const showDetailsBtns = document.querySelectorAll('.show-details');
+        showDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const details = btn.nextElementSibling;
+                details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                btn.textContent = btn.textContent === 'Ver Detalhes' ? 'Ocultar Detalhes' : 'Ver Detalhes';
+            });
+        });
+
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
