@@ -78,9 +78,10 @@
             cursor: pointer;
         }
         .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/800');
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://media.discordapp.net/attachments/1293369291273408565/1293382694788665384/Imagem_do_WhatsApp_de_2024-03-26_as_21.26.18_d6bf5332.jpg?ex=67092640&is=6707d4c0&hm=4276045f78aa4ebe228953f2ca7ceb5da36a376a55531e0cc92be9d2c32202ed&=&format=webp&width=335&height=335');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -88,7 +89,16 @@
             text-align: center;
             color: var(--white);
             padding-top: 80px;
-        }
+}
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll; /* Para evitar paralaxe em telas menores */
+        background-size: cover;
+        background-position: center;
+        padding-top: 100px; /* Ajuste para maior espaçamento em telas menores */
+        height: 80vh; /* Ajuste da altura para uma exibição melhor em mobile */
+    }}
+
         .hero-content {
             max-width: 800px;
         }
@@ -599,7 +609,7 @@
             <h2 class="section-title">Sobre Nós</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>A Foco e Clima é líder em soluções de climatização, com mais de 15 anos de experiência no mercado. Nossa equipe altamente qualificada está comprometida em fornecer o melhor em conforto térmico para nossos clientes.</p>
+                    <p>A Foco e Clima é líder em soluções de climatização, Nossa equipe altamente qualificada está comprometida em fornecer o melhor em conforto térmico para nossos clientes.</p>
                     <p>Trabalhamos com as melhores marcas e tecnologias do mercado, garantindo eficiência energética e durabilidade em todos os nossos projetos. Nosso compromisso com a excelência nos tornou referência no setor de refrigeração e climatização.</p>
                     <p>Atendemos clientes residenciais e comerciais, sempre com foco na satisfação e no bem-estar de quem confia em nossos serviços.</p>
                 </div>
